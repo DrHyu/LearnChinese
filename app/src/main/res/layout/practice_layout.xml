@@ -1,0 +1,166 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="30dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:layout_gravity="center">
+
+        <com.example.drhyu.learnchinese.AutoResizeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/textView1"
+            android:textSize="50dp"
+            android:text="hi\nhello"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2" />
+        <com.example.drhyu.learnchinese.AutoResizeButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/button1"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:paddingTop="22dp" />
+        <com.example.drhyu.learnchinese.AutoResizeButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/button2"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:paddingTop="22dp" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight ="15">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.05" />
+        <com.example.drhyu.learnchinese.AutoResizeButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/button3"
+            android:layout_weight="0.3"
+            android:paddingTop="22dp" />
+        <com.example.drhyu.learnchinese.AutoResizeButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/button4"
+            android:layout_weight="0.3"
+            android:paddingTop="22dp" />
+        <com.example.drhyu.learnchinese.AutoResizeButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/button5"
+            android:layout_weight="0.3"
+            android:paddingTop="22dp" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.05" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2" />
+        <com.example.drhyu.learnchinese.AutoResizeButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/button6"
+            android:layout_weight="0.3"
+            android:paddingTop="22dp" />
+        <com.example.drhyu.learnchinese.AutoResizeButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/button7"
+            android:layout_weight="0.3"
+            android:paddingTop="22dp" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/progressBar1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:id="@+id/settings_button"
+                android:layout_weight="50"
+                android:layout_gravity="bottom" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/game"
+                android:layout_weight="50"
+                android:layout_gravity="bottom" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

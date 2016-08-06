@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.drhyu.learnchinese">
+
+<application
+    android:theme="@style/AppTheme"
+    android:label="@string/app_name"
+    android:icon="@drawable/ic_launcher"
+    android:allowBackup="true">
+
+    <activity android:name=".LoadScreenActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
+    </activity>
+
+    <activity android:name=".PracticeActivity" > </activity>
+    <activity android:name=".SelectListActivity" > </activity>
+    <activity android:name=".SelectGroupPractice" > </activity>
+    <activity android:name=".ModidyListActivity" > </activity>
+    <activity android:name=".IndexActivity" > </activity>
+    <activity android:name=".SettingsActivity" > </activity>
+    <activity android:name=".CharacterStatisticView" > </activity>
+    <activity android:name=".test" > </activity>
+
+</application>
+
+</manifest>
