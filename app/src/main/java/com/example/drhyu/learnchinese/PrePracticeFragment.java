@@ -1,21 +1,18 @@
 package com.example.drhyu.learnchinese;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.apptik.widget.MultiSlider;
@@ -30,6 +27,8 @@ public class PrePracticeFragment extends  android.support.v4.app.Fragment {
     private ListView listView;
     private MyMultiSlider multiSlider;
 
+
+    private Button b1,b2,b3;
     private int currenltySlected = 0;
 
     List<TableInfo> tableInfos;
@@ -41,10 +40,14 @@ public class PrePracticeFragment extends  android.support.v4.app.Fragment {
         datasource = new ChDataSource(getActivity().getApplicationContext());
 
         // inflate the layout using the cloned inflater, not default inflater
-        View v = inflater.inflate(R.layout.activity_select_group_practice, container, false);
+        View v = inflater.inflate(R.layout.activity_pre_practice, container, false);
         listView            = (ListView) v.findViewById(android.R.id.list);
 
         multiSlider         = (MyMultiSlider) v.findViewById(R.id.range_slider);
+
+        b1                  = (Button) v.findViewById(R.id.b1);
+        b2                  = (Button) v.findViewById(R.id.b2);
+        b3                  = (Button) v.findViewById(R.id.b3);
 
         getHandles();
         return v;
@@ -61,6 +64,41 @@ public class PrePracticeFragment extends  android.support.v4.app.Fragment {
                 }
             }
         });
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.putExtra("tableInfo",
+                        (Serializable)listView.getAdapter().getItem((int) currenltySlected));
+                i.setClass(getActivity(), PracticeActivity.class);
+                i.putExtra("from", multiSlider.getThumb(0).getValue());
+                i.putExtra("to", multiSlider.getThumb(1).getValue());
+                startActivity(i);
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.putExtra("tableInfo",
+                        (Serializable)listView.getAdapter().getItem((int) currenltySlected));
+                i.setClass(getActivity(), PracticeActivity.class);
+                startActivity(i);
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.putExtra("tableInfo",
+                        (Serializable)listView.getAdapter().getItem((int) currenltySlected));
+                i.setClass(getActivity(), PracticeActivity.class);
+                startActivity(i);
+            }
+        });
+
+
     }
 
     public static PrePracticeFragment newInstance(){

@@ -28,12 +28,12 @@ public class test extends AppCompatActivity {
         mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {
-                if(menuItemId == R.id.bb_menu_recents) {
+                if(menuItemId == R.id.bb_menu_character_history) {
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.root_layout, CharacterStatisticsViewFragment.newInstance(), "CStats")
                             .commit();
-                }else if (menuItemId == R.id.bb_menu_favorites){
+                }else if (menuItemId == R.id.bb_menu_practice){
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.root_layout, PrePracticeFragment.newInstance(), "CStats")

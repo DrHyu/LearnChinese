@@ -58,22 +58,22 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button"
+                android:text="Slow"
+                android:id="@+id/b1"
                 android:layout_weight="1" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button8"
+                android:text="medium"
+                android:id="@+id/b2"
                 android:layout_weight="1" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button9"
+                android:text="fast"
+                android:id="@+id/b3"
                 android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>

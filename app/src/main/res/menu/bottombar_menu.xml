@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/bb_menu_recents"
-        android:icon="@drawable/ic_recents"
-        android:title="Recents" />
+        android:id="@+id/bb_menu_character_history"
+        android:icon="@drawable/ic_list_black_24dp"
+        android:title="Characters" />
     <item
-        android:id="@+id/bb_menu_favorites"
-        android:icon="@drawable/ic_favorites"
-        android:title="Favorites" />
+        android:id="@+id/bb_menu_practice"
+        android:icon="@drawable/ic_assignment_black_24dp"
+        android:title="Practice" />
     <item
         android:id="@+id/bb_menu_nearby"
         android:icon="@drawable/ic_nearby"

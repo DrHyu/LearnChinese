@@ -48,6 +48,9 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
     private ArrayList<String>  uncorrectly_answered  = new ArrayList<String>();
 
     private  TableInfo ti;
+    private int from =0;
+    private int to = 0;
+
 
     private PracticeActivity pA = this;
 
@@ -59,6 +62,9 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
 
         Intent i = getIntent();
         ti = (TableInfo) i.getSerializableExtra("tableInfo");
+
+        from = i.getIntExtra("from",0);
+        to = i.getIntExtra("to",0);
 
         setHandlers();
         ps = new PracticeSettings();
@@ -217,6 +223,18 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
 
         data = datasource.getAllCharacters(ti.getTableName());
 
+        if(to >0){
+            int size = data.size();
+            for(int i = size-1; i >= to ;i--){
+                data.remove(i);
+            }
+        }
+        if(from > 0){
+            for (int i = 0; i < from ; i++){
+                data.remove(0);
+            }
+        }
+
         if(data.size() < NUMBER_OF_ANSWERS){
             Toast.makeText(getApplicationContext(),
                     "There are "+ data.size() + " characters in this group, at least "
@@ -252,6 +270,9 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
     {
         if(game_on) {
 
+            //Remove previous question from the list
+            game_question_order.remove(0);
+
             if (game_question_order.size() == 0) {
                 //game completed
                 Toast.makeText(getApplicationContext(),
@@ -261,8 +282,6 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
                 return;
             }
 
-            //Remove previous question from the list
-            game_question_order.remove(0);
 
             // Fill the array with all the question numbers
             int[] temp = new int[data.size()-1];

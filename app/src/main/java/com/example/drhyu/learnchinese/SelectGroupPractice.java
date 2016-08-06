@@ -27,7 +27,7 @@ public class SelectGroupPractice extends ListActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_group_practice);
+        setContentView(R.layout.activity_pre_practice);
 
         datasource = new ChDataSource(this);
         datasource.open();
