@@ -52,7 +52,7 @@ public class PracticeTimer {
     }
 
     public void pause(){
-        currentProgress = r.getProgress();
+        //currentProgress = r.getProgress();
         r.kill();
         running = false;
     }

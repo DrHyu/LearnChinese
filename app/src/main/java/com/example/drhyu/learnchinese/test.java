@@ -24,6 +24,7 @@ public class test extends AppCompatActivity {
 
         mBottomBar = BottomBar.attach(this, savedInstanceState);
         mBottomBar.noTopOffset();
+        mBottomBar.noNavBarGoodness();
         mBottomBar.setItems(R.menu.bottombar_menu);
         mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override

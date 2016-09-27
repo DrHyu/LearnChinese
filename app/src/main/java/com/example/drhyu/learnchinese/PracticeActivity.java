@@ -28,17 +28,20 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
 
     private final int NUMBER_OF_ANSWERS         = 7;
 
-    private final long BASE_TIME            = 10_000;
-    private final long TIME_REFUND_NORMAL   = 3000;
+    private final long BASE_TIME            = 100_000;
+    private final long TIME_REFUND_NORMAL   = 30000;
 
     private PracticeSettings ps;
 
     private PracticeTimer pTimer;
 
-    private AutoResizeButton b1,b2,b3,b4,b5,b6,b7,b8;
-    private Button sb;
+    public enum GAME_SATE {GAME_ON,GAME_PAUSED,GAME_END};
 
-    private Switch s1,s2,s3,s4,s5,s6;
+    public GAME_SATE game_sate;
+
+    private AutoResizeButton b1,b2,b3,b4,b5,b6,b7,b8;
+    private Button sb,gc;
+
     private AutoResizeTextView textView1;
     private ProgressBar timerBar;
 
@@ -58,7 +61,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.practice_layout);
+        setContentView(R.layout.activity_practice_layout);
 
         Intent i = getIntent();
         ti = (TableInfo) i.getSerializableExtra("tableInfo");
@@ -70,7 +73,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         ps = new PracticeSettings();
         // TODO Set and get from DB
 
-        pTimer = new PracticeTimer(timerBar,null, BASE_TIME*(ps.GAME_SPEED_FACTOR/100),TIME_REFUND_NORMAL*(ps.GAME_SPEED_FACTOR/100),this);
+        game_start();
         game_initialize();
     }
 
@@ -84,7 +87,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
     protected void onResume()
     {
         datasource.open();
-        if(!pTimer.isRunning()){pTimer.resume();}
+        game_resume();
         super.onResume();
     }
 
@@ -92,7 +95,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
     protected void onPause()
     {
         datasource.close();
-        pTimer.pause();
+        game_pause();
         super.onPause();
     }
 
@@ -115,7 +118,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         }
         else if(v instanceof Button){
             Button btn = (Button) v;
-            if(game_on) {
+            if(game_sate == GAME_SATE.GAME_ON) {
                 if (btn.getId() == R.id.button1 && game_correct_answer == 1) {
                     correctly_answered.add(data.get(game_question_order.get(0)).character);
                     pTimer.addCorrectTime();
@@ -148,47 +151,50 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
 
                 // Failed answer
                 else if (btn.getId() == R.id.button1) {
-                    pTimer.stop();
                     uncorrectly_answered.add(data.get(button_options.get(0)).getCharacter());
                     uncorrectly_answered.add(data.get(game_question_order.get(0)).character);
                     game_wrong_answer();
                 } else if (btn.getId() == R.id.button2) {
-                    pTimer.stop();
                     uncorrectly_answered.add(data.get(button_options.get(1)).getCharacter());
                     uncorrectly_answered.add(data.get(game_question_order.get(0)).character);
                     game_wrong_answer();
                 } else if (btn.getId() == R.id.button3) {
-                    pTimer.stop();
                     uncorrectly_answered.add(data.get(button_options.get(2)).getCharacter());
                     uncorrectly_answered.add(data.get(game_question_order.get(0)).character);
                     game_wrong_answer();
                 } else if (btn.getId() == R.id.button4) {
-                    pTimer.stop();
                     uncorrectly_answered.add(data.get(button_options.get(3)).getCharacter());
                     uncorrectly_answered.add(data.get(game_question_order.get(0)).character);
                     game_wrong_answer();
                 } else if (btn.getId() == R.id.button5) {
-                    pTimer.stop();
                     uncorrectly_answered.add(data.get(button_options.get(4)).getCharacter());
                     uncorrectly_answered.add(data.get(game_question_order.get(0)).character);
                     game_wrong_answer();
                 } else if (btn.getId() == R.id.button6) {
-                    pTimer.stop();
                     uncorrectly_answered.add(data.get(button_options.get(5)).getCharacter());
                     uncorrectly_answered.add(data.get(game_question_order.get(0)).character);
-                    game_wrong_answer();;
+                    game_wrong_answer();
+                    ;
                 } else if (btn.getId() == R.id.button7) {
-                    pTimer.stop();
                     uncorrectly_answered.add(data.get(button_options.get(6)).getCharacter());
                     uncorrectly_answered.add(data.get(game_question_order.get(0)).character);
                     game_wrong_answer();
                 }
+            }
 
-                if (btn.getId() == R.id.settings_button) {
-                    Intent i = new Intent();
-                    i.setClass(PracticeActivity.this,SettingsActivity.class);
-                    i.putExtra("PracticeSettings", (Serializable) ps);
-                    startActivityForResult(i,0);
+            if (btn.getId() == R.id.settings_button) {
+                Intent i = new Intent();
+                i.setClass(PracticeActivity.this, SettingsActivity.class);
+                i.putExtra("PracticeSettings", (Serializable) ps);
+                startActivityForResult(i, 0);
+            }
+            if (btn.getId() == R.id.game_control) {
+                if (game_sate == GAME_SATE.GAME_ON) {
+                    game_pause();
+                } else if(game_sate == GAME_SATE.GAME_PAUSED){
+                    game_resume();
+                } else if(game_sate == GAME_SATE.GAME_END){
+                    game_end();
                 }
             }
         }
@@ -240,10 +246,10 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
                     "There are "+ data.size() + " characters in this group, at least "
                             + (NUMBER_OF_ANSWERS+1) + " are needed."
                     , Toast.LENGTH_SHORT).show();
-            game_on = false;
+            game_end();
         }
         else{
-            game_on = true;
+            game_sate = GAME_SATE.GAME_ON;
             pTimer.start();
         }
 
@@ -268,7 +274,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
 
     private void game_set_next_question()
     {
-        if(game_on) {
+        if(game_sate == GAME_SATE.GAME_ON) {
 
             //Remove previous question from the list
             game_question_order.remove(0);
@@ -277,7 +283,6 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
                 //game completed
                 Toast.makeText(getApplicationContext(),
                     "GAME COMPLETED", Toast.LENGTH_SHORT).show();
-                game_on = false;
                 game_end();
                 return;
             }
@@ -383,7 +388,8 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         Toast.makeText(getApplicationContext(),
                 "WRONG ! Correct Answer: " + game_correct_answer , Toast.LENGTH_SHORT).show();
 
-        game_end();
+        pTimer.addCorrectTime();
+        game_set_next_question();
     }
 
     public void timerFinishedCallback()
@@ -398,8 +404,67 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
 
     }
 
+    private void game_restart(){
+        game_start();
+    }
+    private void game_start(){
+        game_sate = GAME_SATE.GAME_ON;
+        pTimer = new PracticeTimer(timerBar,null, BASE_TIME*(ps.GAME_SPEED_FACTOR/100),TIME_REFUND_NORMAL*(ps.GAME_SPEED_FACTOR/100),this);
+
+        b1.setClickable(true);
+        b2.setClickable(true);
+        b3.setClickable(true);
+        b4.setClickable(true);
+        b5.setClickable(true);
+        b6.setClickable(true);
+        b7.setClickable(true);
+
+        gc.setText("PAUSE");
+    }
+
+    private void game_pause() {
+
+        game_sate = GAME_SATE.GAME_PAUSED;
+        pTimer.pause();
+        b1.setClickable(false);
+        b2.setClickable(false);
+        b3.setClickable(false);
+        b4.setClickable(false);
+        b5.setClickable(false);
+        b6.setClickable(false);
+        b7.setClickable(false);
+
+        gc.setClickable(true);
+        sb.setClickable(true);
+        gc.setText("RESUME");
+    }
+    private void game_resume() {
+
+        game_sate = GAME_SATE.GAME_ON;
+        pTimer.resume();
+
+        b1.setClickable(true);
+        b2.setClickable(true);
+        b3.setClickable(true);
+        b4.setClickable(true);
+        b5.setClickable(true);
+        b6.setClickable(true);
+        b7.setClickable(true);
+
+        gc.setText("PAUSE");
+
+    }
     private void game_end(){
         // Update the character history
+        game_sate = GAME_SATE.GAME_END;
+
+        b1.setClickable(false);
+        b2.setClickable(false);
+        b3.setClickable(false);
+        b4.setClickable(false);
+        b5.setClickable(false);
+        b6.setClickable(false);
+        b7.setClickable(false);
 
         CharacterStatistics c;
 
@@ -421,7 +486,10 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         }
 
 
+
+
     }
+
     private void setHandlers()
     {
 
@@ -438,6 +506,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         b7 = (AutoResizeButton) this.findViewById(R.id.button7);
 
         sb = (Button) this.findViewById(R.id.settings_button);
+        gc = (Button) this.findViewById(R.id.game_control);
 
         //b8 = (Button) this.findViewById(R.id.button8);
         b1.setOnClickListener(this);
@@ -449,7 +518,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         b7.setOnClickListener(this);
 
         sb.setOnClickListener(this);
-        //b8.setOnClickListener(this);
+        gc.setOnClickListener(this);
 
     }
 

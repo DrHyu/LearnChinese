@@ -49,6 +49,7 @@ public class CharacterStatisticsViewFragment extends android.support.v4.app.Frag
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         datasource = new ChDataSource(getActivity().getApplicationContext());
+        datasource.open();
         // inflate the layout using the cloned inflater, not default inflater
         View v = inflater.inflate(R.layout.activity_show_character_history, container, false);
 
@@ -73,6 +74,7 @@ public class CharacterStatisticsViewFragment extends android.support.v4.app.Frag
 
     @Override
     public void onResume() {
+        //TODO Check if it is open already
         datasource.open();
         refreshList();
         super.onResume();
@@ -138,7 +140,12 @@ public class CharacterStatisticsViewFragment extends android.support.v4.app.Frag
         final List<String> dataSelection = new ArrayList<String>();
         dataSelection.add("All");
         dataSelection.add("Studied-only");
-        dataSelection.add("HSK1");
+
+        List<TableInfo> t = datasource.getAllTableNames();
+
+        for(int i =0; i < t.size(); i ++){
+            dataSelection.add(t.get(i).getTableName());
+        }
 
         ArrayAdapter<String> dataSelectionAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, dataSelection);
 
@@ -154,10 +161,8 @@ public class CharacterStatisticsViewFragment extends android.support.v4.app.Frag
                     case 1:
                         dataFilter = DataSelection.STUDIED_ONLY;
                         break;
-                    case 2:
-                        dataFilter = DataSelection.FROM_LIST;
-                        break;
                     default:
+                        dataFilter = DataSelection.FROM_LIST;
                         break;
                 }
                 refreshList();
@@ -176,7 +181,7 @@ public class CharacterStatisticsViewFragment extends android.support.v4.app.Frag
             data = datasource.getAllCharacterStatistics();
 
         } else if (dataFilter == DataSelection.FROM_LIST){
-            data = datasource.getCharacterStatisticsRegexp(" "+MySQLiteHelper.COLUMN_LISTS_PRESENT+" REGEXP '.*"+ "hsk1" +",.*'");
+            data = datasource.getCharacterStatisticsRegexp(" "+MySQLiteHelper.COLUMN_LISTS_PRESENT+" LIKE '%"+ dataSelectionSpinner.getSelectedItem().toString() +"%'");
 
         } else if (dataFilter == DataSelection.STUDIED_ONLY){
             data = datasource.getCharacterStatisticsRegexp(" `"+MySQLiteHelper.COLUMN_TIMES_STUDIED+"` > 0");

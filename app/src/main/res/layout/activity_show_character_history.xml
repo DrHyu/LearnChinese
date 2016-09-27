@@ -2,37 +2,42 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingTop="30dp">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_height="0dp"
+        android:layout_weight="10">
 
         <Spinner
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/spinner1"
             android:spinnerMode="dropdown"
             android:textColor="#FF000000"
+            android:background="@color/colorPrimaryDark"
             android:layout_weight="1" />
 
         <Spinner
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/spinner2"
             android:spinnerMode="dropdown"
-            android:textColor="#FF000000"
+            android:background="@color/colorPrimaryDark"
             android:layout_weight="1" />
     </LinearLayout>
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:text="@string/hello"
-        android:layout_weight="20" />
+        android:layout_weight="90" />
 
 </LinearLayout>

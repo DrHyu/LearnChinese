@@ -156,8 +156,8 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/game"
+                android:text="Pause"
+                android:id="@+id/game_control"
                 android:layout_weight="50"
                 android:layout_gravity="bottom" />
         </LinearLayout>

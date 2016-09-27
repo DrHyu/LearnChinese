@@ -2,6 +2,7 @@ package com.example.drhyu.learnchinese;
 
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Jaume on 21/10/2014.
@@ -56,12 +57,18 @@ public class StoppableRunnable implements Runnable {
     public void run() {
         while(pBar.getProgress() > 0 && !killIt){
             try {
+
+
                 Thread.sleep(time_per_progress);
                 pBar.incrementProgressBy(-1);
+                if(killIt){ break;}
             }
             catch (Exception e){}
         }
-        if(!killIt) {pA.timerFinishedCallback();}
+        if(!killIt) {
+            pA.timerFinishedCallback();
+        }
+
     }
 
     public void kill() {
