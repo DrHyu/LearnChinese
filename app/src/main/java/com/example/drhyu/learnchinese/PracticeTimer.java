@@ -1,5 +1,6 @@
 package com.example.drhyu.learnchinese;
 
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -12,64 +13,75 @@ public class PracticeTimer {
     private ProgressBar pBar;
     private TextView    tView;
 
-    private long baseTime;
-    private long timePerCorrectQuestion;
-    private int currentProgress;
+    private long timePerCorrectAnswer;
 
     private PracticeActivity pA;
 
-    long time_per_progress;
+    private long max_time =0;
+    private long time_left = 0;
 
     private boolean running = false;
 
-    Thread t;
-    StoppableRunnable r;
+    private static MCountDownTimer mTimer;
 
     public PracticeTimer(ProgressBar pBar, TextView tView,
-                         long baseTime, long timePerCorrectQuestion, PracticeActivity pA) {
+                         long baseTime, long timePerCorrectAnswer, PracticeActivity pA) {
         this.pBar = pBar;
         this.tView = tView;
-        this.baseTime = baseTime;
-        this.timePerCorrectQuestion = timePerCorrectQuestion;
+        this.max_time = baseTime;
+        this.timePerCorrectAnswer = timePerCorrectAnswer;
         this.pA = pA;
 
-        time_per_progress = baseTime /100;
+        pBar.setMax((int)baseTime/100);
     }
 
     public void start(){
-        currentProgress =100;
-        resume();
+        if(!running) {
+            resume();
+        }
     }
 
     public void addCorrectTime(){
-        try {
-            //lock.lock();
-                pBar.incrementProgressBy((int)(timePerCorrectQuestion/time_per_progress));
-            //lock.unlock();
-        }
-        catch (Exception e){
-        }
+        mTimer.cancel();
+        time_left += timePerCorrectAnswer;
+        pBar.incrementProgressBy((int)timePerCorrectAnswer/100);
+        startNewTimer(time_left);
     }
 
     public void pause(){
-        //currentProgress = r.getProgress();
-        r.kill();
+        mTimer.cancel();
+        mTimer = null;
         running = false;
     }
 
     public void resume(){
-        r = new StoppableRunnable(pBar,tView, baseTime,timePerCorrectQuestion,pA,currentProgress);
-        t = new Thread(r);
-        t.start();
+        startNewTimer(max_time);
         running = true;
     }
 
     public void stop(){
-        r.kill();
+        mTimer.cancel();
+        mTimer = null;
         running = false;
     }
 
     public boolean isRunning(){
         return running;
+    }
+
+    private void startNewTimer(long t){
+        mTimer = new MCountDownTimer(t,100) {
+            @Override
+            public void onTick(long m) {
+                time_left = m;
+                pBar.setProgress((int)m/100);
+                Log.v("TIMER", "Time left" + time_left);
+            }
+
+            @Override
+            public void onFinish() {
+                pA.timerFinishedCallback();
+            }
+        }.start();
     }
 }

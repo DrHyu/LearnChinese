@@ -9,7 +9,7 @@ import android.widget.Toast;
  */
 public class StoppableRunnable implements Runnable {
 
-    private volatile boolean killIt = false;
+    volatile boolean killIt = false;
 
     private ProgressBar pBar;
     private TextView tView;
@@ -55,20 +55,19 @@ public class StoppableRunnable implements Runnable {
 
     @Override
     public void run() {
-        while(pBar.getProgress() > 0 && !killIt){
+        while(pBar.getProgress() > 0 ){//&& !killIt){
             try {
-
-
                 Thread.sleep(time_per_progress);
                 pBar.incrementProgressBy(-1);
-                if(killIt){ break;}
+//                if(killIt){
+//                    break;
+//                }
             }
             catch (Exception e){}
         }
-        if(!killIt) {
-            pA.timerFinishedCallback();
-        }
-
+//        if(!killIt) {
+//            pA.timerFinishedCallback();
+//        }
     }
 
     public void kill() {

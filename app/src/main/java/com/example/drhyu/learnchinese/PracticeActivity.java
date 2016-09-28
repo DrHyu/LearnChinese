@@ -28,12 +28,12 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
 
     private final int NUMBER_OF_ANSWERS         = 7;
 
-    private final long BASE_TIME            = 100_000;
-    private final long TIME_REFUND_NORMAL   = 30000;
+    private final long BASE_TIME             = 100_000;
+    private final long CORRECT_ANSW_TIME     = 30000;
 
     private PracticeSettings ps;
 
-    private PracticeTimer pTimer;
+    private static PracticeTimer pTimer;
 
     public enum GAME_SATE {GAME_ON,GAME_PAUSED,GAME_END};
 
@@ -73,7 +73,6 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         ps = new PracticeSettings();
         // TODO Set and get from DB
 
-        game_start();
         game_initialize();
     }
 
@@ -250,7 +249,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         }
         else{
             game_sate = GAME_SATE.GAME_ON;
-            pTimer.start();
+            game_start();
         }
 
         // Fill the array with all the question numbers
@@ -409,7 +408,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
     }
     private void game_start(){
         game_sate = GAME_SATE.GAME_ON;
-        pTimer = new PracticeTimer(timerBar,null, BASE_TIME*(ps.GAME_SPEED_FACTOR/100),TIME_REFUND_NORMAL*(ps.GAME_SPEED_FACTOR/100),this);
+        pTimer = new PracticeTimer(timerBar,null, BASE_TIME*(ps.GAME_SPEED_FACTOR/100),CORRECT_ANSW_TIME*(ps.GAME_SPEED_FACTOR/100),this);
 
         b1.setClickable(true);
         b2.setClickable(true);
