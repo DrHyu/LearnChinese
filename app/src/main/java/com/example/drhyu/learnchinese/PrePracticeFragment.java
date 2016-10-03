@@ -72,6 +72,9 @@ public class PrePracticeFragment extends  android.support.v4.app.Fragment {
                 i.putExtra("tableInfo",
                         (Serializable)listView.getAdapter().getItem((int) currenltySlected));
                 i.setClass(getActivity(), PracticeActivity.class);
+                PracticeSettings ps = new PracticeSettings();
+                ps.GAME_SPEED_FACTOR = 100;
+                i.putExtra("settings",ps);
                 i.putExtra("from", multiSlider.getThumb(0).getValue());
                 i.putExtra("to", multiSlider.getThumb(1).getValue());
                 startActivity(i);
@@ -83,22 +86,30 @@ public class PrePracticeFragment extends  android.support.v4.app.Fragment {
                 Intent i = new Intent();
                 i.putExtra("tableInfo",
                         (Serializable)listView.getAdapter().getItem((int) currenltySlected));
+                PracticeSettings ps = new PracticeSettings();
+                ps.GAME_SPEED_FACTOR = 50;
+                i.putExtra("settings",ps);
+                i.putExtra("from", multiSlider.getThumb(0).getValue());
+                i.putExtra("to", multiSlider.getThumb(1).getValue());
                 i.setClass(getActivity(), PracticeActivity.class);
                 startActivity(i);
             }
         });
-        b2.setOnClickListener(new View.OnClickListener() {
+        b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
                 i.putExtra("tableInfo",
                         (Serializable)listView.getAdapter().getItem((int) currenltySlected));
+                PracticeSettings ps = new PracticeSettings();
+                ps.GAME_SPEED_FACTOR = 25;
+                i.putExtra("settings",ps);
+                i.putExtra("from", multiSlider.getThumb(0).getValue());
+                i.putExtra("to", multiSlider.getThumb(1).getValue());
                 i.setClass(getActivity(), PracticeActivity.class);
                 startActivity(i);
             }
         });
-
-
     }
 
     public static PrePracticeFragment newInstance(){

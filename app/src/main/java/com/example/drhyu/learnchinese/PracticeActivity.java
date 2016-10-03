@@ -69,8 +69,10 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         from = i.getIntExtra("from",0);
         to = i.getIntExtra("to",0);
 
+        ps = (PracticeSettings) i.getSerializableExtra("settings");
+        if( ps == null){ ps = new PracticeSettings();}
+
         setHandlers();
-        ps = new PracticeSettings();
         // TODO Set and get from DB
 
         game_initialize();
@@ -408,7 +410,10 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
     }
     private void game_start(){
         game_sate = GAME_SATE.GAME_ON;
-        pTimer = new PracticeTimer(timerBar,null, BASE_TIME*(ps.GAME_SPEED_FACTOR/100),CORRECT_ANSW_TIME*(ps.GAME_SPEED_FACTOR/100),this);
+
+        long base_time = (long)(BASE_TIME*((float)ps.GAME_SPEED_FACTOR/(float)100));
+        long correct_answer_time = (long)(CORRECT_ANSW_TIME*((float)ps.GAME_SPEED_FACTOR/(float)100));
+        pTimer = new PracticeTimer(timerBar,null,base_time,correct_answer_time,this);
 
         b1.setClickable(true);
         b2.setClickable(true);

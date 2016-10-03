@@ -32,37 +32,47 @@ public class PracticeTimer {
         this.timePerCorrectAnswer = timePerCorrectAnswer;
         this.pA = pA;
 
+        time_left = baseTime;
+
         pBar.setMax((int)baseTime/100);
     }
 
     public void start(){
         if(!running) {
-            resume();
+            startNewTimer(max_time);
+            running = true;
         }
     }
 
     public void addCorrectTime(){
         mTimer.cancel();
-        time_left += timePerCorrectAnswer;
+        if(time_left + timePerCorrectAnswer > max_time){
+            time_left = max_time;
+        }
+        else {
+            time_left += timePerCorrectAnswer;
+        }
         pBar.incrementProgressBy((int)timePerCorrectAnswer/100);
         startNewTimer(time_left);
     }
 
     public void pause(){
-        mTimer.cancel();
-        mTimer = null;
-        running = false;
+        if(running) {
+            mTimer.cancel();
+            mTimer = null;
+            running = false;
+        }
     }
 
     public void resume(){
-        startNewTimer(max_time);
-        running = true;
+        if(!running) {
+            startNewTimer(time_left);
+            running = true;
+        }
     }
 
     public void stop(){
-        mTimer.cancel();
-        mTimer = null;
-        running = false;
+        pause();
     }
 
     public boolean isRunning(){
