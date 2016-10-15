@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 public class SettingsActivity extends Activity implements View.OnClickListener  {
     
-    private PracticeSettings ps;
+    private MultipleChoiceSettings ps;
 
     private Switch s1,s2,s3,s4,s5,s6;
     private SeekBar sb_game_speed;
@@ -31,7 +31,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener  
 
         Intent i = getIntent();
 
-        ps = (PracticeSettings) i.getSerializableExtra("PracticeSettings");
+        ps = (MultipleChoiceSettings) i.getSerializableExtra("MultipleChoiceSettings");
 
         setHandlers();
         updateViews();
@@ -93,7 +93,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener  
 
 
                 Intent i = new Intent();
-                i.putExtra("PracticeSettings",(Serializable)ps);
+                i.putExtra("MultipleChoiceSettings",(Serializable)ps);
                 setResult(Activity.RESULT_OK, i);
                 finish();
             }

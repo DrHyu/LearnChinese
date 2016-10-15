@@ -15,7 +15,7 @@ public class PracticeTimer {
 
     private long timePerCorrectAnswer;
 
-    private PracticeActivity pA;
+    private MultipleChoiceActivity pA;
 
     private long max_time =0;
     private long time_left = 0;
@@ -25,7 +25,7 @@ public class PracticeTimer {
     private static MCountDownTimer mTimer;
 
     public PracticeTimer(ProgressBar pBar, TextView tView,
-                         long baseTime, long timePerCorrectAnswer, PracticeActivity pA) {
+                         long baseTime, long timePerCorrectAnswer, MultipleChoiceActivity pA) {
         this.pBar = pBar;
         this.tView = tView;
         this.max_time = baseTime;

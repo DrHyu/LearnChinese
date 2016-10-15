@@ -2,6 +2,8 @@ package com.example.drhyu.learnchinese;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,7 @@ import java.util.List;
 /**
  * Created by Jaume on 7/26/2016.
  */
-public class CharacterStatisticsViewFragment extends android.support.v4.app.Fragment {
+public class CharacterStatisticsViewFragment extends Fragment {
 
     private ChDataSource datasource;
 

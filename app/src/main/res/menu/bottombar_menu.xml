@@ -9,11 +9,11 @@
         android:icon="@drawable/ic_assignment_black_24dp"
         android:title="Practice" />
     <item
-        android:id="@+id/bb_menu_nearby"
-        android:icon="@drawable/ic_nearby"
+        android:id="@+id/bb_menu_flashcard"
+        android:icon="@drawable/ic_filter_none_black_24dp"
         android:title="Nearby" />
     <item
-        android:id="@+id/bb_menu_friends"
+        android:id="@+id/bb_menu_test"
         android:icon="@drawable/ic_friends"
         android:title="Friends" />
     <item

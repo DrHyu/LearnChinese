@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Jaume on 6/24/2016.
  */
-public class PracticeSettings implements Serializable {
+public class MultipleChoiceSettings implements Serializable {
 
     public boolean SHOW_HANZI_QUESTION     = true;
     public boolean SHOW_ENGLISH_QUESTION   = false;
@@ -16,7 +16,7 @@ public class PracticeSettings implements Serializable {
 
     public int GAME_SPEED_FACTOR = 100;
 
-    public PracticeSettings (){
+    public MultipleChoiceSettings(){
 
     }
 

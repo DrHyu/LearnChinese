@@ -3,17 +3,15 @@ package com.example.drhyu.learnchinese;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
+import android.support.annotation.Nullable;
+import android.support.annotation.IdRes;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-
-public class test extends AppCompatActivity {
+public class StartActivity extends Activity {
     private BottomBar mBottomBar;
 
     @Override
@@ -30,18 +28,25 @@ public class test extends AppCompatActivity {
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {
                 if(menuItemId == R.id.bb_menu_character_history) {
-                    getSupportFragmentManager()
+                    getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.root_layout, CharacterStatisticsViewFragment.newInstance(), "CStats")
                             .commit();
                 }else if (menuItemId == R.id.bb_menu_practice){
-                    getSupportFragmentManager()
+                    getFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.root_layout, PrePracticeFragment.newInstance(), "CStats")
+                            .replace(R.id.root_layout, PreMultipleChoiceFragment.newInstance(), "PrePractice")
                             .commit();
-                } else{
+
+                 }else if (menuItemId == R.id.bb_menu_flashcard){
+                    getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.root_layout, PreFlashcardFragment.newInstance(), "Flashcards")
+                        .commit();
+                }
+                else{
                     Intent i = new Intent();
-                    i.setClass(test.this,IndexActivity.class);
+                    i.setClass(StartActivity.this,IndexActivity.class);
                     startActivity(i);
                 }
 

@@ -53,17 +53,17 @@ public class IndexActivity extends Activity implements OnClickListener {
 
         if(btn.getId() == R.id.button1){
             Intent i = new Intent();
-            i.setClass(IndexActivity.this,SelectListActivity.class);
+            //i.setClass(IndexActivity.this,SelectListActivity.class);
             startActivity(i);
         }
         else if(btn.getId() == R.id.button2){
             Intent i = new Intent();
-            i.setClass(IndexActivity.this,SelectGroupPractice.class);
+            //i.setClass(IndexActivity.this,SelectGroupPractice.class);
             startActivity(i);
         }
         else if(btn.getId() == R.id.button3){
             Intent i = new Intent();
-            i.setClass(IndexActivity.this,CharacterStatisticView.class);
+            //i.setClass(IndexActivity.this,CharacterStatisticView.class);
             startActivity(i);
         }
         else if(btn.getId() == R.id.button4){

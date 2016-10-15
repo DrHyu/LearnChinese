@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PracticeActivity extends Activity implements View.OnClickListener {
+public class MultipleChoiceActivity extends Activity implements View.OnClickListener {
 
     private ChDataSource datasource;
     private List<Character> data;
@@ -31,7 +31,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
     private final long BASE_TIME             = 100_000;
     private final long CORRECT_ANSW_TIME     = 30000;
 
-    private PracticeSettings ps;
+    private MultipleChoiceSettings ps;
 
     private static PracticeTimer pTimer;
 
@@ -55,7 +55,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
     private int to = 0;
 
 
-    private PracticeActivity pA = this;
+    private MultipleChoiceActivity pA = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -69,8 +69,8 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         from = i.getIntExtra("from",0);
         to = i.getIntExtra("to",0);
 
-        ps = (PracticeSettings) i.getSerializableExtra("settings");
-        if( ps == null){ ps = new PracticeSettings();}
+        ps = (MultipleChoiceSettings) i.getSerializableExtra("settings");
+        if( ps == null){ ps = new MultipleChoiceSettings();}
 
         setHandlers();
         // TODO Set and get from DB
@@ -105,7 +105,7 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, i);
 
         if(resultCode == Activity.RESULT_OK) {
-            ps = (PracticeSettings) i.getSerializableExtra("PracticeSettings");
+            ps = (MultipleChoiceSettings) i.getSerializableExtra("MultipleChoiceSettings");
             setButtonText();
         }
     }
@@ -185,8 +185,8 @@ public class PracticeActivity extends Activity implements View.OnClickListener {
 
             if (btn.getId() == R.id.settings_button) {
                 Intent i = new Intent();
-                i.setClass(PracticeActivity.this, SettingsActivity.class);
-                i.putExtra("PracticeSettings", (Serializable) ps);
+                i.setClass(MultipleChoiceActivity.this, SettingsActivity.class);
+                i.putExtra("MultipleChoiceSettings", (Serializable) ps);
                 startActivityForResult(i, 0);
             }
             if (btn.getId() == R.id.game_control) {

@@ -1,5 +1,6 @@
 package com.example.drhyu.learnchinese;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,7 +22,7 @@ import io.apptik.widget.MultiSlider;
 /**
  * Created by Jaume on 7/27/2016.
  */
-public class PrePracticeFragment extends  android.support.v4.app.Fragment {
+public class PreMultipleChoiceFragment extends Fragment {
 
     private ChDataSource datasource;
     private ListView listView;
@@ -71,8 +72,8 @@ public class PrePracticeFragment extends  android.support.v4.app.Fragment {
                 Intent i = new Intent();
                 i.putExtra("tableInfo",
                         (Serializable)listView.getAdapter().getItem((int) currenltySlected));
-                i.setClass(getActivity(), PracticeActivity.class);
-                PracticeSettings ps = new PracticeSettings();
+                i.setClass(getActivity(), MultipleChoiceActivity.class);
+                MultipleChoiceSettings ps = new MultipleChoiceSettings();
                 ps.GAME_SPEED_FACTOR = 100;
                 i.putExtra("settings",ps);
                 i.putExtra("from", multiSlider.getThumb(0).getValue());
@@ -86,12 +87,12 @@ public class PrePracticeFragment extends  android.support.v4.app.Fragment {
                 Intent i = new Intent();
                 i.putExtra("tableInfo",
                         (Serializable)listView.getAdapter().getItem((int) currenltySlected));
-                PracticeSettings ps = new PracticeSettings();
+                MultipleChoiceSettings ps = new MultipleChoiceSettings();
                 ps.GAME_SPEED_FACTOR = 50;
                 i.putExtra("settings",ps);
                 i.putExtra("from", multiSlider.getThumb(0).getValue());
                 i.putExtra("to", multiSlider.getThumb(1).getValue());
-                i.setClass(getActivity(), PracticeActivity.class);
+                i.setClass(getActivity(), MultipleChoiceActivity.class);
                 startActivity(i);
             }
         });
@@ -101,22 +102,22 @@ public class PrePracticeFragment extends  android.support.v4.app.Fragment {
                 Intent i = new Intent();
                 i.putExtra("tableInfo",
                         (Serializable)listView.getAdapter().getItem((int) currenltySlected));
-                PracticeSettings ps = new PracticeSettings();
+                MultipleChoiceSettings ps = new MultipleChoiceSettings();
                 ps.GAME_SPEED_FACTOR = 25;
                 i.putExtra("settings",ps);
                 i.putExtra("from", multiSlider.getThumb(0).getValue());
                 i.putExtra("to", multiSlider.getThumb(1).getValue());
-                i.setClass(getActivity(), PracticeActivity.class);
+                i.setClass(getActivity(), MultipleChoiceActivity.class);
                 startActivity(i);
             }
         });
     }
 
-    public static PrePracticeFragment newInstance(){
-        return new PrePracticeFragment();
+    public static PreMultipleChoiceFragment newInstance(){
+        return new PreMultipleChoiceFragment();
     }
 
-    public PrePracticeFragment(){
+    public PreMultipleChoiceFragment(){
     }
 
     private void refreshList(){
@@ -156,7 +157,7 @@ public class PrePracticeFragment extends  android.support.v4.app.Fragment {
         //                Intent i = new Intent();
 //                i.putExtra("tableInfo",
 //                        (Serializable)listView.getAdapter().getItem((int) id));
-//                i.setClass(getActivity(), PracticeActivity.class);
+//                i.setClass(getActivity(), MultipleChoiceActivity.class);
 //                startActivity(i);
     }
 

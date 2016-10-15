@@ -30,7 +30,6 @@ public class LoadScreenActivity extends Activity{
 
         List<TableInfo> tables = datasource.getAllTableNames();
 
-
         // Find out if the default set of tables exists
         boolean ch_db,hsk1,hsk2;
         ch_db = hsk1 = hsk2 = false;
@@ -48,7 +47,7 @@ public class LoadScreenActivity extends Activity{
 
 
         Intent i = new Intent();
-        i.setClass(LoadScreenActivity.this,test.class);
+        i.setClass(LoadScreenActivity.this,StartActivity.class);
         startActivity(i);
         LoadScreenActivity.this.finish();
     }
