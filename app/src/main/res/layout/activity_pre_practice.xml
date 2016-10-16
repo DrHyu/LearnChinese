@@ -34,7 +34,7 @@
         android:layout_weight="40">
 
 
-        <com.example.drhyu.learnchinese.MyMultiSlider
+        <com.example.drhyu.learnchinese.MiscClasses.MyMultiSlider
             android:id="@+id/range_slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

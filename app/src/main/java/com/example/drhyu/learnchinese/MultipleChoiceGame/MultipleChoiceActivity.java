@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.MultipleChoiceGame;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +10,15 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import com.example.drhyu.learnchinese.MiscClasses.AutoResizeButton;
+import com.example.drhyu.learnchinese.MiscClasses.AutoResizeTextView;
+import com.example.drhyu.learnchinese.MiscClasses.Character;
+import com.example.drhyu.learnchinese.MiscClasses.CharacterStatistics;
+import com.example.drhyu.learnchinese.DBStuff.ChDataSource;
+import com.example.drhyu.learnchinese.MiscClasses.PracticeTimer;
+import com.example.drhyu.learnchinese.R;
+import com.example.drhyu.learnchinese.DBStuff.TableInfo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -50,7 +59,7 @@ public class MultipleChoiceActivity extends Activity implements View.OnClickList
     private ArrayList<String>  correctly_answered  = new ArrayList<String>();
     private ArrayList<String>  uncorrectly_answered  = new ArrayList<String>();
 
-    private  TableInfo ti;
+    private TableInfo ti;
     private int from =0;
     private int to = 0;
 

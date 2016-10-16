@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.FlashCardGame;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -13,6 +13,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.drhyu.learnchinese.DBStuff.ChDataSource;
+import com.example.drhyu.learnchinese.DBStuff.TableInfo;
+import com.example.drhyu.learnchinese.MiscClasses.Character;
+import com.example.drhyu.learnchinese.MiscClasses.MyMultiSlider;
+import com.example.drhyu.learnchinese.MultipleChoiceGame.MultipleChoiceActivity;
+import com.example.drhyu.learnchinese.MultipleChoiceGame.MultipleChoiceSettings;
+import com.example.drhyu.learnchinese.R;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -22,7 +30,7 @@ import io.apptik.widget.MultiSlider;
 /**
  * Created by Jaume on 7/27/2016.
  */
-public class PreMultipleChoiceFragment extends Fragment {
+public class PreFlashcardFragment extends Fragment {
 
     private ChDataSource datasource;
     private ListView listView;
@@ -72,7 +80,7 @@ public class PreMultipleChoiceFragment extends Fragment {
                 Intent i = new Intent();
                 i.putExtra("tableInfo",
                         (Serializable)listView.getAdapter().getItem((int) currenltySlected));
-                i.setClass(getActivity(), MultipleChoiceActivity.class);
+                i.setClass(getActivity(), FlashCardActivity.class);
                 MultipleChoiceSettings ps = new MultipleChoiceSettings();
                 ps.GAME_SPEED_FACTOR = 100;
                 i.putExtra("settings",ps);
@@ -87,12 +95,12 @@ public class PreMultipleChoiceFragment extends Fragment {
                 Intent i = new Intent();
                 i.putExtra("tableInfo",
                         (Serializable)listView.getAdapter().getItem((int) currenltySlected));
+                i.setClass(getActivity(), FlashCardActivity.class);
                 MultipleChoiceSettings ps = new MultipleChoiceSettings();
                 ps.GAME_SPEED_FACTOR = 50;
                 i.putExtra("settings",ps);
                 i.putExtra("from", multiSlider.getThumb(0).getValue());
                 i.putExtra("to", multiSlider.getThumb(1).getValue());
-                i.setClass(getActivity(), MultipleChoiceActivity.class);
                 startActivity(i);
             }
         });
@@ -113,11 +121,11 @@ public class PreMultipleChoiceFragment extends Fragment {
         });
     }
 
-    public static PreMultipleChoiceFragment newInstance(){
-        return new PreMultipleChoiceFragment();
+    public static PreFlashcardFragment newInstance(){
+        return new PreFlashcardFragment();
     }
 
-    public PreMultipleChoiceFragment(){
+    public PreFlashcardFragment(){
     }
 
     private void refreshList(){

@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.DBStuff;
 
 /**
  * Created by Jaume on 18/10/2014.
@@ -7,6 +7,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.drhyu.learnchinese.MiscClasses.CharacterStatistics;
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
 

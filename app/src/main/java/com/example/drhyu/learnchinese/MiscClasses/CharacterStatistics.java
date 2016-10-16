@@ -1,4 +1,6 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.MiscClasses;
+
+import java.lang.*;
 
 /**
  * Created by Jaume on 6/19/2016.

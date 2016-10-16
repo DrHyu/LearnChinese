@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.CharacterStatistics;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.drhyu.learnchinese.DBStuff.ChDataSource;
+import com.example.drhyu.learnchinese.DBStuff.MySQLiteHelper;
+import com.example.drhyu.learnchinese.MiscClasses.CharacterStatistics;
+import com.example.drhyu.learnchinese.R;
+import com.example.drhyu.learnchinese.DBStuff.TableInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -183,7 +189,7 @@ public class CharacterStatisticsViewFragment extends Fragment {
             data = datasource.getAllCharacterStatistics();
 
         } else if (dataFilter == DataSelection.FROM_LIST){
-            data = datasource.getCharacterStatisticsRegexp(" "+MySQLiteHelper.COLUMN_LISTS_PRESENT+" LIKE '%"+ dataSelectionSpinner.getSelectedItem().toString() +"%'");
+            data = datasource.getCharacterStatisticsRegexp(" "+ MySQLiteHelper.COLUMN_LISTS_PRESENT+" LIKE '%"+ dataSelectionSpinner.getSelectedItem().toString() +"%'");
 
         } else if (dataFilter == DataSelection.STUDIED_ONLY){
             data = datasource.getCharacterStatisticsRegexp(" `"+MySQLiteHelper.COLUMN_TIMES_STUDIED+"` > 0");

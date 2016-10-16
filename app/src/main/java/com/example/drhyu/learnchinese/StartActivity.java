@@ -1,5 +1,8 @@
 package com.example.drhyu.learnchinese;
 
+import com.example.drhyu.learnchinese.CharacterStatistics.CharacterStatisticsViewFragment;
+import com.example.drhyu.learnchinese.FlashCardGame.PreFlashcardFragment;
+import com.example.drhyu.learnchinese.MultipleChoiceGame.PreMultipleChoiceFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 

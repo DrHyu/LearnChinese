@@ -17,14 +17,13 @@
         </intent-filter>
     </activity>
 
-    <activity android:name=".MultipleChoiceActivity" > </activity>
+    <activity android:name=".MultipleChoiceGame.MultipleChoiceActivity" > </activity>
     <activity android:name=".ModidyListActivity" > </activity>
     <activity android:name=".IndexActivity" > </activity>
-    <activity android:name=".SettingsActivity" > </activity>
-    <activity android:name=".CharacterStatisticView" > </activity>
+    <activity android:name=".MultipleChoiceGame.SettingsActivity" > </activity>
+    <activity android:name=".CharacterStatistics.CharacterStatisticView" > </activity>
     <activity android:name=".StartActivity" > </activity>
-    <activity android:name=".FlashCardActivity" > </activity>
-    <activity android:name=".ScreenSlideActivity" > </activity>
+    <activity android:name=".FlashCardGame.FlashCardActivity" > </activity>
 </application>
 
 </manifest>

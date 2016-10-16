@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.example.drhyu.learnchinese.DBStuff.ChDataSource;
+import com.example.drhyu.learnchinese.MiscClasses.Character;
+
 public class IndexActivity extends Activity implements OnClickListener {
 
     private ChDataSource datasource;

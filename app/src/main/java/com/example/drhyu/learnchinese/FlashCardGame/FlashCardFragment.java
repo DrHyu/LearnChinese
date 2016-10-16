@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.FlashCardGame;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -23,35 +23,65 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class ScreenSlidePageFragment extends Fragment {
+import com.example.drhyu.learnchinese.R;
+
+public class FlashCardFragment extends Fragment {
     /**
      * The argument key for the page number this fragment represents.
      */
     public static final String ARG_PAGE = "page";
+    public static final String FRONT_STRING = "front";
+    public static final String BACK_STRING = "back";
+    public static final String SHOW_FRONT = "sFront";
 
     /**
      * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
      */
     private int mPageNumber;
+    private String frontText;
+    private String backText;
+
+    private TextView frontTV;
+    private TextView backTV;
+
+    public boolean showingFront;
 
     /**
      * Factory method for this fragment class. Constructs a new fragment for the given page number.
      */
-    public static ScreenSlidePageFragment create(int pageNumber) {
-        ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
+    public static FlashCardFragment create(String front, String back, Boolean sFront) {
+        FlashCardFragment fragment = new FlashCardFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PAGE, pageNumber);
+        args.putString(FRONT_STRING, front);
+        args.putString(BACK_STRING, back);
+        args.putBoolean(SHOW_FRONT, sFront);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public ScreenSlidePageFragment() {
+    public FlashCardFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPageNumber = getArguments().getInt(ARG_PAGE);
+        frontText = getArguments().getString(FRONT_STRING);
+        backText = getArguments().getString(BACK_STRING);
+        showingFront = getArguments().getBoolean(SHOW_FRONT);
+    }
+
+    public void flipCard (){
+        if(showingFront){
+            frontTV.setVisibility(TextView.GONE);
+            backTV.setVisibility(TextView.VISIBLE);
+            showingFront = false;
+        }
+        else{
+            frontTV.setVisibility(TextView.VISIBLE);
+            backTV.setVisibility(TextView.GONE);
+            showingFront = true;
+        }
     }
 
     @Override
@@ -59,11 +89,13 @@ public class ScreenSlidePageFragment extends Fragment {
             Bundle savedInstanceState) {
         // Inflate the layout containing a title and body text.
         ViewGroup rootView = (ViewGroup) inflater
-                .inflate(R.layout.fragment_flashcard_front, container, false);
+                .inflate(R.layout.fragment_flashcard_layout, container, false);
 
-        // Set the title view to show the page number.
-        ((TextView) rootView.findViewById(android.R.id.text1)).setText(
-                getString(R.string.title_template_step, mPageNumber + 1));
+        frontTV = (TextView) rootView.findViewById(R.id.front);
+        backTV  = (TextView) rootView.findViewById(R.id.back);
+
+        frontTV.setText(frontText);
+        backTV.setText(backText);
 
         return rootView;
     }

@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.MultipleChoiceGame;
 
 import java.io.Serializable;
 

@@ -3,7 +3,10 @@ package com.example.drhyu.learnchinese;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.Manifest;
+
+import com.example.drhyu.learnchinese.DBStuff.ChDataSource;
+import com.example.drhyu.learnchinese.DBStuff.TableInfo;
+import com.example.drhyu.learnchinese.MiscClasses.Character;
 
 import java.util.List;
 
@@ -17,7 +20,7 @@ public class LoadScreenActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.load_screen_activity_layout);
+        setContentView(R.layout.activity_load_screen_layout);
 
         datasource = new ChDataSource(this);
         datasource.open();

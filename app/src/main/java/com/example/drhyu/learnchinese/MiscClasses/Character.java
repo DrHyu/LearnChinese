@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.MiscClasses;
 
 /**
  * Created by Jaume on 18/10/2014.

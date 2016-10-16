@@ -1,5 +1,5 @@
 
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.MiscClasses;
 import android.content.Context;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;

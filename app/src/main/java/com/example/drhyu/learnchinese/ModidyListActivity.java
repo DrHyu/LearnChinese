@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
+import com.example.drhyu.learnchinese.DBStuff.ChDataSource;
+import com.example.drhyu.learnchinese.DBStuff.TableInfo;
+import com.example.drhyu.learnchinese.MiscClasses.Character;
+
 import java.util.List;
 
 public class ModidyListActivity extends ListActivity {
@@ -16,7 +20,7 @@ public class ModidyListActivity extends ListActivity {
     private EditText editText2;
     private EditText editText3;
 
-    private  TableInfo ti;
+    private TableInfo ti;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

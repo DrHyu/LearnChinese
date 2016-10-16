@@ -1,17 +1,14 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.MiscClasses;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.SeekBar;
 
-import java.util.ArrayList;
+import com.example.drhyu.learnchinese.MiscClasses.Character;
+
 import java.util.List;
 
 import io.apptik.widget.MultiSlider;
@@ -22,7 +19,7 @@ import io.apptik.widget.MultiSlider;
 public class MyMultiSlider extends MultiSlider {
 
 
-    List<Character> values;
+    public List<Character> values;
 
     public MyMultiSlider(Context context) {
         super(context, null);

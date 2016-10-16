@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.MiscClasses;
 
 /*
  * Copyright (C) 2008 The Android Open Source Project
@@ -17,7 +17,6 @@ package com.example.drhyu.learnchinese;
  */
 
 
-import android.util.Log;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Message;

@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.DBStuff;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,8 +9,10 @@ import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteCursorDriver;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQuery;
-import android.os.Environment;
 import android.util.Log;
+
+import com.example.drhyu.learnchinese.MiscClasses.Character;
+import com.example.drhyu.learnchinese.MiscClasses.CharacterStatistics;
 
 import java.util.ArrayList;
 import java.util.List;

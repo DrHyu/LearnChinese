@@ -14,7 +14,7 @@
  *  0. You just DO WHAT YOU WANT TO.
  */
 
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.MiscClasses;
 import android.content.Context;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;

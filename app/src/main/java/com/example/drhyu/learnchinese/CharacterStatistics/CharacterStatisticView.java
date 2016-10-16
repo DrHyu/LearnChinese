@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.CharacterStatistics;
 
 /**
  * Created by Jaume on 6/25/2016.
@@ -18,6 +18,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.drhyu.learnchinese.DBStuff.ChDataSource;
+import com.example.drhyu.learnchinese.DBStuff.MySQLiteHelper;
+import com.example.drhyu.learnchinese.MiscClasses.CharacterStatistics;
+import com.example.drhyu.learnchinese.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,7 +67,7 @@ public class CharacterStatisticView extends Activity implements View.OnClickList
             data = datasource.getAllCharacterStatistics();
 
         } else if (dataFilter == DataSelection.FROM_LIST){
-            data = datasource.getCharacterStatisticsRegexp(" "+MySQLiteHelper.COLUMN_LISTS_PRESENT+" REGEXP '.*"+ "hsk1" +",.*'");
+            data = datasource.getCharacterStatisticsRegexp(" "+ MySQLiteHelper.COLUMN_LISTS_PRESENT+" REGEXP '.*"+ "hsk1" +",.*'");
 
         } else if (dataFilter == DataSelection.STUDIED_ONLY){
             data = datasource.getCharacterStatisticsRegexp(" `"+MySQLiteHelper.COLUMN_TIMES_STUDIED+"` > 0");

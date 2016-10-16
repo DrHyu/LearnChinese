@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.DBStuff;
 
 import java.io.Serializable;
 

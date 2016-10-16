@@ -1,4 +1,4 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.MultipleChoiceGame;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -13,6 +13,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.drhyu.learnchinese.MiscClasses.Character;
+import com.example.drhyu.learnchinese.DBStuff.ChDataSource;
+import com.example.drhyu.learnchinese.MiscClasses.MyMultiSlider;
+import com.example.drhyu.learnchinese.R;
+import com.example.drhyu.learnchinese.DBStuff.TableInfo;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -22,7 +28,7 @@ import io.apptik.widget.MultiSlider;
 /**
  * Created by Jaume on 7/27/2016.
  */
-public class PreFlashcardFragment extends Fragment {
+public class PreMultipleChoiceFragment extends Fragment {
 
     private ChDataSource datasource;
     private ListView listView;
@@ -72,12 +78,12 @@ public class PreFlashcardFragment extends Fragment {
                 Intent i = new Intent();
                 i.putExtra("tableInfo",
                         (Serializable)listView.getAdapter().getItem((int) currenltySlected));
-                i.setClass(getActivity(), FlashCardActivity.class);
-//                MultipleChoiceSettings ps = new MultipleChoiceSettings();
-//                ps.GAME_SPEED_FACTOR = 100;
-//                i.putExtra("settings",ps);
-//                i.putExtra("from", multiSlider.getThumb(0).getValue());
-//                i.putExtra("to", multiSlider.getThumb(1).getValue());
+                i.setClass(getActivity(), MultipleChoiceActivity.class);
+                MultipleChoiceSettings ps = new MultipleChoiceSettings();
+                ps.GAME_SPEED_FACTOR = 100;
+                i.putExtra("settings",ps);
+                i.putExtra("from", multiSlider.getThumb(0).getValue());
+                i.putExtra("to", multiSlider.getThumb(1).getValue());
                 startActivity(i);
             }
         });
@@ -87,12 +93,12 @@ public class PreFlashcardFragment extends Fragment {
                 Intent i = new Intent();
                 i.putExtra("tableInfo",
                         (Serializable)listView.getAdapter().getItem((int) currenltySlected));
-                i.setClass(getActivity(), ScreenSlideActivity.class);
-//                MultipleChoiceSettings ps = new MultipleChoiceSettings();
-//                ps.GAME_SPEED_FACTOR = 50;
-//                i.putExtra("settings",ps);
-//                i.putExtra("from", multiSlider.getThumb(0).getValue());
-//                i.putExtra("to", multiSlider.getThumb(1).getValue());
+                MultipleChoiceSettings ps = new MultipleChoiceSettings();
+                ps.GAME_SPEED_FACTOR = 50;
+                i.putExtra("settings",ps);
+                i.putExtra("from", multiSlider.getThumb(0).getValue());
+                i.putExtra("to", multiSlider.getThumb(1).getValue());
+                i.setClass(getActivity(), MultipleChoiceActivity.class);
                 startActivity(i);
             }
         });
@@ -113,11 +119,11 @@ public class PreFlashcardFragment extends Fragment {
         });
     }
 
-    public static PreFlashcardFragment newInstance(){
-        return new PreFlashcardFragment();
+    public static PreMultipleChoiceFragment newInstance(){
+        return new PreMultipleChoiceFragment();
     }
 
-    public PreFlashcardFragment(){
+    public PreMultipleChoiceFragment(){
     }
 
     private void refreshList(){

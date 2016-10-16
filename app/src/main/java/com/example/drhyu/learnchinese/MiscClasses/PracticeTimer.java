@@ -1,8 +1,11 @@
-package com.example.drhyu.learnchinese;
+package com.example.drhyu.learnchinese.MiscClasses;
 
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.drhyu.learnchinese.MiscClasses.MCountDownTimer;
+import com.example.drhyu.learnchinese.MultipleChoiceGame.MultipleChoiceActivity;
 
 
 /**
